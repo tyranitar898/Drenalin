@@ -7,8 +7,14 @@ section {
 .background {
     margin-top: 0;
     background-image: url(IMG_2781.png);
+<<<<<<< Updated upstream
     height: 100vh;
     padding: 0px;
+=======
+    width: 100%;
+    height: 880px;
+
+>>>>>>> Stashed changes
     background-size: cover;
 }
 
@@ -83,7 +89,11 @@ section {
 }
 
 #centerStuff {
+<<<<<<< Updated upstream
     margin-top: 0px;
+=======
+
+>>>>>>> Stashed changes
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
@@ -95,8 +105,12 @@ section {
     color: white;
     text-decoration-line: 1px solid black;
     font: bold 160px Helvetica;
+<<<<<<< Updated upstream
     margin: 0px;
     padding-top: 40vh;
+=======
+    
+>>>>>>> Stashed changes
 }
 
 #joi {
@@ -108,7 +122,7 @@ section {
     margin: 0px auto;
     border-radius: 5px;
     font-weight: 300;
-    padding: 5px;
+    
 }
 
 #joi2 {
@@ -120,7 +134,7 @@ section {
     width: 300px;
     border-radius: 5px;
     font-weight: 300;
-    padding: 5px;
+    
 }
 
 #top_menu {
