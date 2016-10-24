@@ -75,7 +75,7 @@ section {
 }
 
 #appstore {
-    margin-top: 20px;
+    margin-top: 0px;
     margin-left: 20px;
     background-image: url(apple-store.png);
     background-size: cover;
@@ -340,8 +340,7 @@ section {
 #outro p {
     text-align: center;
     border-top: 1px solid black;
-    margin-left: 25vw;
-    width: 50vw;
+    line-height: 10vh;
 }
 
 @media(max-width: 1000px) {
