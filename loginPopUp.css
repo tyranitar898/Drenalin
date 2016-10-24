@@ -1,0 +1,45 @@
+#pop_background{
+  position: fixed;
+  width:100%;
+  height:900px;
+  top:0;
+  left:0;
+  background:#000;
+  opacity: .8;
+  z-index: 1000;
+  cursor:pointer;
+  display: none;
+}
+#pop_box1,
+#pop_box{
+  position: fixed;
+  top:15%;
+  background:#fff;
+  width:40%;
+  height:auto;
+  margin:0 30% 0 30%;
+  padding:20px;
+  z-index: 1500;
+  display: none;
+  
+
+}
+
+
+
+
+#close{
+  width: 30px;
+  height:30px;
+  border-radius: 50%;
+  border:1px solid #999;
+  text-align: center;
+  line-height: 30px;
+  font-size:30px;
+  float: right;
+  cursor:pointer;
+}
+#signupButton{
+  text-decoration: none;
+  color:white;
+}

@@ -1,0 +1,372 @@
+html,
+body,
+section {
+    margin: 0px;
+}
+
+.background {
+    margin-top: 0px;
+    display: block;
+    background-image: url(IMG_2781.png);
+    width: 100%;
+    height: 880px;
+    padding: 10px;
+    background-size: cover;
+}
+
+
+
+#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#imgurInfoButton {
+    position: absolute;
+    left: 93%;
+}
+
+#inner-message {
+    margin: 0 auto;
+}
+
+#userNameTop {
+    color: white;
+}
+
+.createPic,
+.joinPic,
+.playPic {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+.createPic {
+    background-image: url(createPic.png);
+    background-size: cover;
+}
+
+.joinPic {
+    background-image: url(joinPic.png);
+    background-size: cover;
+}
+
+.playPic {
+    background-image: url(playPic.png);
+    background-size: cover;
+}
+
+#footer {
+    margin-top: 10px;
+    width: auto;
+    background: #43D1AF;
+    height: 250px;
+}
+
+#footer ul {
+    float: right;
+}
+
+#footer li {
+    display: inline-block;
+    text-decoration-style: none;
+}
+
+#appstore {
+    margin-top: 20px;
+    margin-left: 20px;
+    background-image: url(apple-store.png);
+    background-size: cover;
+    width: 320px;
+    height: 90px;
+    background-repeat: no-repeat;
+}
+
+#centerStuff {
+    margin-top: 150px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#dre {
+    text-align: center;
+    color: white;
+    text-decoration-line: 1px solid black;
+    font: bold 160px Helvetica;
+    margin: 20px;
+}
+
+#joi {
+    text-align: center;
+    color: white;
+    font: normal 40px Helvetica;
+    background: #43D1AF;
+    width: 320px;
+    margin: 0px auto;
+    border-radius: 5px;
+    font-weight: 300;
+    padding: 5px;
+}
+
+#joi2 {
+    margin-top: 20px;
+    margin-left: 20px;
+    font: normal 40px Helvetica;
+    text-align: center;
+    border: 1px solid white;
+    width: 300px;
+    border-radius: 5px;
+    font-weight: 300;
+    padding: 5px;
+}
+
+#top_menu {
+    width: 600px;
+    margin-left: auto;
+    position: relative;
+    color: white;
+}
+
+#top_menu li {
+    display: inline-block;
+    margin-right: 30px;
+    list-style: none;
+    font-family: Helvetica;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+#top_menu li a {
+    text-decoration: none;
+    color: white;
+}
+
+#top_menu li a:hover {
+    color: rgb(180, 180, 180);
+    transition: 0.75s;
+}
+
+#pop_background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .8;
+    z-index: 1000;
+    cursor: pointer;
+    display: none;
+}
+
+#pop_box2,
+#pop_box1,
+#pop_box {
+    position: fixed;
+    top: 15%;
+    background: #fff;
+    width: auto;
+    height: auto;
+    margin: 0 30% 0 30%;
+    padding: 20px;
+    z-index: 1500;
+    display: none;
+}
+
+#close {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #999;
+    text-align: center;
+    line-height: 30px;
+    font-size: 30px;
+    float: right;
+    cursor: pointer;
+}
+
+#signupButton2,
+#signupButton {
+    text-decoration: none;
+    color: white;
+}
+
+.form-style-6 {
+    align-content: center;
+    font: 95% Arial, Helvetica, sans-serif;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 16px;
+    background: white;
+}
+
+.form-style-6 h1 {
+    background: #43D1AF;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+}
+
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="password"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+}
+
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="password"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus {
+    box-shadow: 0 0 5px #43D1AF;
+    padding: 3%;
+    border: 1px solid #43D1AF;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #43D1AF;
+    border-bottom: 2px solid #30C29E;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+}
+
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover {
+    background: #2EBC99;
+}
+
+#howItWorks {
+    width: 100vw;
+    align-content: center;
+}
+
+#howItWorks p {
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+#howItWorks h1 {
+    text-align: center;
+    font-size: 80px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+#howItWorks ul li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    height: 650px;
+    width: 32%;
+    text-align: center;
+    border-right: 1px dotted black;
+}
+
+#drenalinModo {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 80px;
+    padding-left: 80px;
+}
+
+#drenalinModo h1 {
+    text-align: center;
+    font-size: 40px;
+    text-transform: all;
+}
+
+.wechatFindUs {
+    background-image: url(wechatFindUs.png);
+}
+
+.instagramFindUs {
+    background-image: url(instagramFindUs.png);
+}
+
+.facebookFindUs {
+    background-image: url(facebookFindUs.png);
+}
+
+.footerPic {
+    margin-left: 0px;
+    margin-right: 35px;
+}
+
+#outro {
+    height: 80px;
+    width: 100vw;
+    background: #43D1AF;
+}
+
+#outro p {
+    text-align: center;
+    border-top: 1px solid black;
+    margin-left: 25vw;
+    width: 50vw;
+}
+
+@media(max-width: 1000px) {
+    #howItWorks ul li {
+        display: block;
+        height: 100vh;
+        width: 100vw;
+        border-right: none;
+        border-bottom: 1px solid black;
+    }
+    #howItWorks p {
+        font-size: 50px;
+        text-transform: capitalize;
+    }
+    #howItWorks {
+        margin-top: 10px;
+        width: 100vw;
+        align-content: center;
+    }
+    #drenalinModo {
+    margin-top:5px;
+    margin-bottom:5px;
+    border-bottom: 1px dotted black;
+}
+}

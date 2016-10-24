@@ -1,0 +1,331 @@
+body {
+    overflow: scroll;
+}
+tr{
+  width:100%;
+  border:1px solid black;
+  margin-top: 10px;
+}
+.event {
+    border-bottom: solid 2px black;
+    width: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-bottom: 20px;
+}
+#pplLeagueTitle{
+  margin-top: 20px;
+}
+
+.event p {
+    font-size: 22px;
+    font-family: Helvetica;
+    color: rgb(160, 160, 160);
+    margin: 5px;
+}
+
+
+.event h1 {
+    font-size: 30px;
+    font-weight: normal;
+    font-family: Helvetica;
+    margin: 5px;
+}
+
+#accounttopleft {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#leftDiv {
+    width: 50%;
+    display: inline-block;
+}
+
+#rightDiv p {
+    float: right;
+}
+
+#rightDiv {
+    width: 38%;
+    padding: 5px;
+    float: right;
+}
+
+#rightDiv img {
+    max-height: 100%;
+    width: 99%;
+    max-width: 400px;
+    cursor: pointer;
+    margin-top: 5px;
+    float: right;
+    min-width: 200px;
+}
+
+#referName {
+    display: none;
+}
+
+#joinEventButton {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    padding: 5px;
+    background: #43D1AF;
+    height: 10%;
+    border: none;
+}
+
+#joinEventButton:hover {
+    background-color: #4CAF50;
+}
+
+#userDiv img {
+  width: 100px;
+  height: 100px;
+  object-position: center;
+  background-position: center center;
+  
+
+}
+
+#userDiv {
+    height: 15%;
+    width: 14%;
+    margin-top: 30px;
+    display: inline-block;
+    margin-right: 30px;
+    border: 2px solid black;
+    
+}
+
+body {
+    align-content: center;
+}
+
+#article_holder {
+    margin-top: 60px;
+    border: solid 2px black;
+    border-bottom: none;
+    width: auto;
+    margin-left: 60px;
+    margin-right: 60px;
+    border-radius: 5px;
+}
+
+header,
+section,
+footer,
+aside,
+article,
+hgroup {
+    display: block;
+}
+
+#top_menu {
+    width: auto;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+#links {
+    text-decoration: none;
+    color: black;
+}
+
+#links:hover {
+    color: rgb(180, 180, 180);
+    border-color: rgb(180, 180, 180);
+    transition: 750ms;
+}
+
+#top_menu li {
+    display: inline-block;
+    float: right;
+    list-style: none;
+    padding: 10px;
+    font-family: Helvetica;
+    font-size: 30px;
+    font-weight: 300;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#pop_background {
+    position: fixed;
+    width: 100%;
+    height: 900px;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .8;
+    z-index: 1000;
+    cursor: pointer;
+    display: none;
+}
+
+#pop_box2 {
+    position: absolute;
+    top: 5%;
+    background: #fff;
+    width: 80%;
+    height: auto;
+    margin: 0 10% 0 10%;
+    padding: 10px;
+    z-index: 1500;
+    display: none;
+    overflow: scroll;
+}
+
+.form-style-5 {
+    align-content: center font: 95% Arial, Helvetica, sans-serif;
+    margin: 10px auto;
+    padding: 16px;
+    background: white;
+}
+
+.form-style-5 h1 {
+    background: #43D1AF;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+}
+
+.form-style-5 h2 {
+    padding: 10px 0;
+    font-size: 140%;
+    font-weight: 300;
+}
+
+.form-style-5 p {
+    padding: 10px 0;
+    font-size: 120%;
+    font-weight: 300;
+}
+
+#pop_box {
+    position: fixed;
+    top: 15%;
+    background: #fff;
+    width: 40%;
+    height: auto;
+    margin: 0 30% 0 30%;
+    padding: 20px;
+    z-index: 1500;
+    display: none;
+}
+
+.form-style-6 {
+    align-content: center font: 95% Arial, Helvetica, sans-serif;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 16px;
+    background: white;
+}
+
+.form-style-6 h1 {
+    background: #43D1AF;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: -16px -16px 16px -16px;
+}
+
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="password"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 3%;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+}
+
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="password"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus {
+    box-shadow: 0 0 5px #43D1AF;
+    padding: 3%;
+    border: 1px solid #43D1AF;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 3%;
+    background: #43D1AF;
+    border-bottom: 2px solid #30C29E;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+}
+
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover {
+    background: #2EBC99;
+}
+#teamName{
+  display: inline-block;
+  width:200px;
+}
+table, th, td {
+   border: 1px solid black;
+}
+td {
+    width: 100px;
+}
+tr {
+    height: 50px;
+}
+@media(min-width: 1100px) {
+    #rightDiv {
+    width: 27%;
+    padding: 5px;
+    float: right;
+}
+}
+@media(min-width: 1490px) {
+    #rightDiv {
+    width: 24%;
+    padding: 5px;
+    float: right;
+}
+}
