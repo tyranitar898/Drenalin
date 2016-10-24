@@ -1,18 +1,19 @@
 .form-style-6{
-    font: 95% Arial, Helvetica, sans-serif;
+    font: 95% Roboto, Arial, Helvetica, sans-serif;
     max-width: 700px;
     margin: 5px auto;
     padding: 10px;
     background: white;
 }
-.form-style-6 h1{
+.form-style-6 h1,
+#Create_Event{
     background: #43D1AF;
     padding: 10px 0;
     font-size: 140%;
     font-weight: 300;
     text-align: center;
     color: #fff;
-    margin: -16px -16px 16px -16px;
+    margin: 16px -16px 16px -16px;
 }
 .form-style-6 input[type="text"],
 .form-style-6 input[type="date"],
