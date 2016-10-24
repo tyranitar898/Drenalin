@@ -14,8 +14,6 @@ section {
     background-size: cover;
 }
 
-
-
 #message {
     position: fixed;
     top: 0;
@@ -87,7 +85,7 @@ section {
 }
 
 #centerStuff {
-    margin-top: 150px;
+    margin-top: 0px;
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
@@ -98,7 +96,7 @@ section {
     color: white;
     text-decoration-line: 1px solid black;
     font: bold 160px Helvetica;
-    margin: 20px;
+    padding-top: 40vh;
 }
 
 #joi {
