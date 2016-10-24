@@ -8,30 +8,11 @@ section {
     margin-top: 0px;
     display: block;
     background-image: url(IMG_2781.png);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
     height: 100vh;
     padding: 0px;
-=======
     width: 100%;
-    height: 880px;
-
->>>>>>> Stashed changes
-=======
-    width: 100%;
-    height: 880px;
-    padding: 10px;
->>>>>>> parent of c231603... fixed css of index
-=======
-    width: 100%;
-    height: 880px;
-    padding: 10px;
->>>>>>> parent of c231603... fixed css of index
     background-size: cover;
 }
-
-
 
 #message {
     position: fixed;
@@ -104,19 +85,7 @@ section {
 }
 
 #centerStuff {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
     margin-top: 0px;
-=======
-
->>>>>>> Stashed changes
-=======
-    margin-top: 150px;
->>>>>>> parent of c231603... fixed css of index
-=======
-    margin-top: 150px;
->>>>>>> parent of c231603... fixed css of index
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
@@ -127,20 +96,8 @@ section {
     color: white;
     text-decoration-line: 1px solid black;
     font: bold 160px Helvetica;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
     margin: 0px;
     padding-top: 40vh;
-=======
-    
->>>>>>> Stashed changes
-=======
-    margin: 20px;
->>>>>>> parent of c231603... fixed css of index
-=======
-    margin: 20px;
->>>>>>> parent of c231603... fixed css of index
 }
 
 #joi {
@@ -152,7 +109,6 @@ section {
     margin: 0px auto;
     border-radius: 5px;
     font-weight: 300;
-    
 }
 
 #joi2 {
