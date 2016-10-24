@@ -2,6 +2,7 @@ html,
 body,
 section {
     margin: 0px;
+    font-family: Roboto;
 }
 
 .background {
@@ -59,10 +60,11 @@ section {
 }
 
 #footer {
-    margin-top: 10px;
     width: auto;
     background: #43D1AF;
-    height: 250px;
+    height: 15vh;
+    padding: 20px;
+    margin: 0 0;
 }
 
 #footer ul {
@@ -108,18 +110,6 @@ section {
     margin: 0px auto;
     border-radius: 5px;
     font-weight: 300;
-}
-
-#joi2 {
-    margin-top: 20px;
-    margin-left: 20px;
-    font: normal 40px Helvetica;
-    text-align: center;
-    border: 1px solid white;
-    width: 300px;
-    border-radius: 5px;
-    font-weight: 300;
-    
 }
 
 #top_menu {
@@ -187,10 +177,30 @@ section {
     cursor: pointer;
 }
 
-#signupButton2,
-#signupButton {
+.signupButton {
     text-decoration: none;
     color: white;
+}
+
+#joi2{
+    border: 1px solid white;
+    width: 30%;
+    left: 0;
+    padding: 20px;
+    font-size: 3vw;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-weight: 300;
+    display: inline-block;
+}
+
+.socialList{
+    padding: 10px;
+    font-size: 3vw;
+    text-align: center;
+    width: 25%;
+    font-weight: 300;
 }
 
 .form-style-6 {
@@ -280,13 +290,13 @@ section {
 }
 
 #howItWorks p {
-    font-size: 30px;
+    font-size: 3vw;
     text-transform: capitalize;
 }
 
 #howItWorks h1 {
     text-align: center;
-    font-size: 80px;
+    font-size: 5vw;
     text-transform: capitalize;
     margin-bottom: 20px;
 }
@@ -296,9 +306,8 @@ section {
     padding: 0px;
     display: inline-block;
     height: 650px;
-    width: 32%;
+    width: 33%;
     text-align: center;
-    border-right: 1px dotted black;
 }
 
 #drenalinModo {
@@ -310,7 +319,7 @@ section {
 
 #drenalinModo h1 {
     text-align: center;
-    font-size: 40px;
+    font-size: 3vw;
     text-transform: all;
 }
 
@@ -332,15 +341,16 @@ section {
 }
 
 #outro {
-    height: 80px;
+    height: 10vh;
     width: 100vw;
     background: #43D1AF;
 }
 
 #outro p {
     text-align: center;
-    border-top: 1px solid black;
-    line-height: 10vh;
+    border-top: 1px solid white;
+    line-height: 8vh;
+    color: white;
 }
 
 @media(max-width: 1000px) {
