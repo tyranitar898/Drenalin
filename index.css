@@ -20,6 +20,8 @@ section {
     top: 0;
     left: 0;
     width: 100%;
+    color: black;
+    margin: 10px;
 }
 
 #imgurInfoButton {
@@ -31,7 +33,7 @@ section {
     margin: 0 auto;
 }
 
-#userNameTop {
+.userNameTop {
     color: white;
 }
 

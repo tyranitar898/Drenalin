@@ -1,6 +1,11 @@
 var ref = new Firebase("https://sportnetwork.firebaseio.com");
-
+/*jQuery(document).ready(function($) {
+    var message = $(this).find('.userNameTop');
+    message.css('color', 'black');
+    
+});*/
 function getStff() {
+
     loggedIn();
 
     document.getElementById("login").addEventListener("click", checkiflogged);
@@ -12,10 +17,16 @@ function getStff() {
     document.getElementById("imgurInfoButton").onclick = function () { 
         swal("Upload a photo to imgur.com!", "It's pretty simple. Go to imgur.com and select upload image. Once you've it has been uploaded succesfully, copy the image URl. Then paste it in here!"); 
     };
+
+
+
+
 }
 
 function loggedIn() {
     var ref = new Firebase("https://sportnetwork.firebaseio.com");
+
+
     function authDataCallback(authData) {
         if (authData) {
             console.log("User " + authData.uid + " is logged in with " + authData.provider);
@@ -26,12 +37,18 @@ function loggedIn() {
                 document.getElementById("userImage").src = snap.val().AWS_Photo_URL;
                 document.getElementById("userNameTop").innerHTML = snap.val().Full_Name;
             });
+
+
+
         } else {
             console.log("User is logged out");
             document.getElementById("login").innerHTML = "Login";
 
         }
     }
+
+
+
     ref.onAuth(authDataCallback);
 }
 
@@ -43,9 +60,11 @@ function createUser(e) {
     var imgururl = document.getElementById("imgururl1").value;
     var soon = imgururl.split(":");
     var HTTPSurl = "https:"+soon[1];
+
 //http://imgur.com/a/ZFf1B
 //https://imgur.com/a/ZFf1B
     
+
     ref.createUser({
         email: userEmail,
         password: userPass
@@ -68,6 +87,9 @@ function createUser(e) {
             swal("Yay!", "succesfull created user :" + userEmail, "success")
             $('#pop_background').fadeOut();
             $('#pop_box1').fadeOut();
+            
+
+
         }
     });
 }
@@ -87,17 +109,31 @@ function createUserFirebase(thisuid,thisphotourl) {
         Email: email1,
         Full_Name: fullname1,
         Password: pass1,
+
+
     });
+
 }
+
+
 
 function checkiflogged() {
     var button_id = this.id;
+
+
     if (button_id == "login") {
         document.getElementById("titletext").innerHTML = "Log in with your Drenalin ID";
     }
+
+
     if (document.getElementById("login").innerHTML == "Login") {
+
+
         $('#pop_background').fadeIn();
         $('#pop_box').fadeIn();
+
+
+
     } else {
         //this is when the inner html is logout!!!
         logoutFirebase();
@@ -111,6 +147,8 @@ function checkiflogged() {
         $('#pop_background').fadeOut();
         $('#pop_box').fadeOut();
         document.getElementById("login").innerHTML = "Login";
+
+
     });
 }
 
@@ -118,10 +156,17 @@ function createafirebaseacc() {
     $('#pop_background').fadeIn();
     $('#pop_box1').fadeIn();
     $('#pop_background').click(function() {
+
         $('#pop_background').fadeOut();
         $('#pop_box1').fadeOut();
+
+
     });
+
 }
+
+
+
 
 function logoutFirebase() {
     var rootref = new Firebase('https://sportnetwork.firebaseio.com');
@@ -139,26 +184,36 @@ function loginFirebase(e) {
         email: userEmail,
         password: userPass
     }, authHandler);
+
+
+
     function authHandler(error, authData) {
 
         if (error) {
             console.log("Login Failed!", error);
             $("#pop_box").effect("shake", { times: 4 }, 800);
 
+
         } else {
             
 
             if (authData) {
                 console.log("Authenticated user with uid:", authData.uid);
+
+
             } else {
                 //this guy is not logged in!
+
             }
 
             $('#pop_background').fadeOut();
             $('#pop_box').fadeOut();
             document.getElementById("login").innerHTML = "Logout";
         }
+
     }
+
 }
+
 
 window.onload = getStff
