@@ -295,9 +295,10 @@ function leagueTeamNameSubmitDisplay(totalTeams) {
 
 
         document.getElementById("leagueTeam").appendChild(teams);
+        document.getElementById("leagueTeam").appendChild(joinTeamSubmit);
         document.getElementById("leagueTeam").appendChild(teamsName);
         document.getElementById("leagueTeam").appendChild(teamSubmit);
-        document.getElementById("leagueTeam").appendChild(joinTeamSubmit);
+        
 
 
     }
