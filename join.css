@@ -1,5 +1,8 @@
-body {
+html,
+body,
+section {
     overflow: scroll;
+    font-family: Roboto;
 }
 tr{
   width:100%;
@@ -372,6 +375,33 @@ tr {
 }
 
 #leagueTeam p{
-    width: 50%;
+    width: 100%;
     height: 10px;
+    float: left;
+}
+
+.join_team{
+    float:left;
+    margin-right: 100%;
+}
+
+.submit_team{
+    padding:3%;
+}
+
+table{
+    width: 100%;
+    border: 3px solid #43D1AF;
+}
+
+table tr{
+    width: inherit;
+    margin: auto;
+}
+
+table td{
+    border: none;
+    border-bottom: 1px solid #43D1AF;
+    padding: 5px;
+    margin: 0px;
 }
