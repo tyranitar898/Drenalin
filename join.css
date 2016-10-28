@@ -22,7 +22,7 @@ tr{
 
 .event p {
     font-size: 22px;
-    font-family: Helvetica;
+    font-family: Roboto;
     color: rgb(160, 160, 160);
     margin: 5px;
 }
@@ -31,7 +31,7 @@ tr{
 .event h1 {
     font-size: 30px;
     font-weight: normal;
-    font-family: Helvetica;
+    font-family: Roboto;
     margin: 5px;
 }
 
@@ -83,7 +83,7 @@ tr{
 }
 
 #joinEventButton:hover {
-    background-color: #4CAF50;
+    background: #2EBC99;
 }
 
 #userDiv img {
@@ -151,7 +151,7 @@ hgroup {
     float: right;
     list-style: none;
     padding: 10px;
-    font-family: Helvetica;
+    font-family: Roboto;
     font-size: 30px;
     font-weight: 300;
     margin-right: 10px;
@@ -187,7 +187,8 @@ hgroup {
 }
 
 .form-style-5 {
-    align-content: center font: 95% Arial, Helvetica, sans-serif;
+    align-content: center;
+    font: 95% Roboto, Arial, Helvetica, sans-serif;
     margin: 10px auto;
     padding: 16px;
     background: white;
@@ -228,7 +229,8 @@ hgroup {
 }
 
 .form-style-6 {
-    align-content: center font: 95% Arial, Helvetica, sans-serif;
+    align-content: center;
+    font: 95% Roboto, Arial, Helvetica, sans-serif;
     max-width: 400px;
     margin: 10px auto;
     padding: 16px;
@@ -269,7 +271,7 @@ hgroup {
     border: 1px solid #ccc;
     padding: 3%;
     color: #555;
-    font: 95% Arial, Helvetica, sans-serif;
+    font: 95% Roboto, Arial, Helvetica, sans-serif;
 }
 
 .form-style-6 input[type="text"]:focus,
@@ -371,7 +373,7 @@ tr {
     border: 1px solid #ccc;
     padding: 1%;
     color: #555;
-    font: 95% Arial, Helvetica, sans-serif;
+    font: 95% Roboto, Arial, Helvetica, sans-serif;
 }
 
 #leagueTeam p{
