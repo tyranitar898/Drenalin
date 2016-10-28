@@ -327,10 +327,12 @@ function getRealNameArrayFromFirebase(thisEventLeage) {
 
 function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
+    leagueTeamPPL = document.getElementById('leaguePPL');
+    leagueTeamPPL.className = "empty"
+
     if (isLeagueOrNot) {
 
         var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
-        leagueTeamPPL = document.getElementById('leaguePPL');
         leagueTeamPPL.innerHTML = "";
 
         var pplwithoutNA = new Array();
@@ -382,7 +384,8 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
                 htmlr.appendChild(htmlc);
             }
             //console.log(displayingARR);
-            document.getElementById("leaguePPL").appendChild(htmlr);
+            leagueTeamPPL.appendChild(htmlr);
+            leagueTeamPPL.className = "not_empty";
 
         }
     }
@@ -401,6 +404,7 @@ function displayeventDetail() {
 
     userListDiv = document.getElementById('usersInEvent');
     leagueSchedDiv = document.getElementById('leagueSched');
+    leagueSchedDiv.className = "empty"
     leagueTeamPPL = document.getElementById('leaguePPL');
 
     userListDiv.innerHTML = "";
@@ -462,6 +466,7 @@ function displayeventDetail() {
             var RT = getRealNameArrayFromFirebase(thisEventLeage);
             createTableUsingSched(leaguesched, RT, GPW, WTPO);
             leagueTeamNameSubmitDisplay(TT);
+            leagueSchedDiv.className = "not_empty"
 
         } else {
             console.log("this is NOT a league event");

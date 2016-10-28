@@ -389,9 +389,13 @@ tr {
     padding:3%;
 }
 
-table{
+table.not_empty{
     width: 100%;
     border: 3px solid #43D1AF;
+}
+
+.empty{
+    display: none;
 }
 
 table tr{
