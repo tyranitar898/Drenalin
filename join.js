@@ -6,14 +6,17 @@ var WTPO;
 var realnameArray;
 var leaguesched;
 var currentEvent;
-var ListOfImgurUrl_OBJ = new Object()
+var ListOfImgurUrl_OBJ = new Object();
+
+var listOfNameincurrentEvent = [];
+
 
 var currentEventOBJ;
 
 var allusers;
 //create callback fucntion that dsiables THE 
 
-
+// start fucntion that gets all infor from event node
 function getStff() {
     var rootRef = new Firebase('https://sportnetwork.firebaseio.com')
     myEvent = document.getElementById('events');
@@ -47,16 +50,11 @@ function getStff() {
 
 
 }
-
+//loads the list view of each event.
 function loadEventInfo(ID) {
 
     var rootRef = new Firebase('https://sportnetwork.firebaseio.com')
 
-    /*
-    userRef = new Firebase('https://sportnetwork.firebaseio.com/Users');
-    userRef.once("value", function(snapshot) {
-        allusers = snapshot.val();
-    });*/
 
 
     eventRef = rootRef.child('Events')
@@ -203,7 +201,7 @@ var currentEvent = "";
 var FullEventName = "";
 
 
-
+//creates a elague schuelde table using the 4 input numbers.
 function createTableUsingSched(a, realTN, finGPW, finWTPO) {
     $('#leagueSched').empty();
     //FIRST ROW SPECIAL
@@ -249,7 +247,7 @@ function createTableUsingSched(a, realTN, finGPW, finWTPO) {
         document.getElementById("leagueSched").appendChild(htmlrow);
     }
 }
-
+//fucntion to submit a new team name for a leauge
 function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
     updateTeamNameRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent + '/League/' + updateTeamLetter);
 
@@ -257,14 +255,14 @@ function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
         "name": newTeamName
     });
     // console.log(currentLeagueOBJ);
-    var RT = getRealNameArrayFromFirebase();
+    var RT = getRealNameArrayFromFirebase(currentEventOBJ.League);
     $('#leagueSched').empty();
     createTableUsingSched(leaguesched, RT, GPW, WTPO);
 
 
 }
 
-
+//displays the place to edit the team anmes
 function leagueTeamNameSubmitDisplay(totalTeams) {
     $('#leagueTeam').empty();
     var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
@@ -298,7 +296,7 @@ function leagueTeamNameSubmitDisplay(totalTeams) {
         document.getElementById("leagueTeam").appendChild(joinTeamSubmit);
         document.getElementById("leagueTeam").appendChild(teamsName);
         document.getElementById("leagueTeam").appendChild(teamSubmit);
-        
+
 
 
     }
@@ -306,16 +304,17 @@ function leagueTeamNameSubmitDisplay(totalTeams) {
 }
 
 //no paramenter cuz its based on currentEvent variable!
+// gets the real name of the teams from the firebase league OBJ
 function getRealNameArrayFromFirebase(thisEventLeage) {
     var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
     realnameArray = [];
 
 
-
-
-
     for (var x = 0; x < TT; x++) {
-        var RN = thisEventLeage[letters[x]]["name"];
+        var almost = thisEventLeage[letters[x]];
+
+        var RN = almost["name"];
+
         realnameArray[letters[x]] = RN;
 
     }
@@ -323,7 +322,7 @@ function getRealNameArrayFromFirebase(thisEventLeage) {
 }
 
 
-//finsih the display for all the teams and the corresponding ppl with their names listed below. Also include a color coded team bordeR??
+//fucntion that displays all the teams and the corresponding ppl with their names listed below. Also include a color coded team bordeR??
 
 function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
@@ -337,12 +336,14 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
         var pplwithoutNA = new Array();
         var pplTeamOnly = new Array();
+
         for (var x = 0; x < pplArray.length; x++) {
             if (pplArray[x] != "N/A") {
                 var uid_Team = pplArray[x] + '';
                 var fi = uid_Team.split(":");
 
                 pplwithoutNA.push(fi[0]);
+
 
                 if (fi[1] == undefined) {
                     pplTeamOnly.push("NoTeam");
@@ -352,6 +353,17 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             }
 
         }
+        /*
+        console.log(listOfNameincurrentEvent);
+        console.log(pplwithoutNA);
+        
+        for(var x = 0; x < pplwithoutNA.length; x++){
+        	var fff = listOfNameincurrentEvent[x];
+        	var uidandname = fff.split(";")
+        	console.log(uidandname[0]);
+
+        }*/
+        console.log(listOfNameincurrentEvent);
 
 
         for (var x = 0; x < amountofTeam; x++) {
@@ -367,11 +379,25 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             for (var i = 0; i < 10; i++) {
                 var htmlc = document.createElement('td');
                 if (pplTeamOnly[i] == letters[x]) {
-                    displayingARR.push(pplwithoutNA[i]);
 
-                    htmlc.innerHTML = pplwithoutNA[i];
-                    htmlr.appendChild(htmlc);
-                    counter = counter + 1;
+
+                    //
+                    var uid = pplwithoutNA[i];
+                    var name;
+
+                    userRef = new Firebase('https://sportnetwork.firebaseio.com/Users/' + uid);
+                    userRef.off();
+                    userRef.once("value", function(snapshot, prevChildKey) {
+
+                        htmlc.innerHTML = snapshot.val().Full_Name;
+                        htmlr.appendChild(htmlc);
+                        counter = counter + 1;
+
+                    });
+
+
+
+
 
 
                 }
@@ -399,7 +425,7 @@ function convertOBJtoARR(UIEobj) {
     return finallist;
 }
 
-
+//displays the event detail window
 function displayeventDetail() {
 
     userListDiv = document.getElementById('usersInEvent');
@@ -463,6 +489,8 @@ function displayeventDetail() {
 
             leaguesched = schedule(TP, TT, GPW, WTPO);
 
+
+
             var RT = getRealNameArrayFromFirebase(thisEventLeage);
             createTableUsingSched(leaguesched, RT, GPW, WTPO);
             leagueTeamNameSubmitDisplay(TT);
@@ -476,8 +504,9 @@ function displayeventDetail() {
         var finalAPPLARR = convertOBJtoARR(ListOfImgurUrl_OBJ);
         //league PPL name display
         var isLeagueORN = (currentEventOBJ.League != undefined);
-        displayLeaguePPLName(TT, finalAPPLARR, isLeagueORN);
         displayUsersInEvent(finalAPPLARR);
+        displayLeaguePPLName(TT, finalAPPLARR, isLeagueORN);
+
 
         var without = convertLeagueArraytoUIDonly(finalAPPLARR);
 
@@ -495,7 +524,6 @@ function displayeventDetail() {
     });
 
 
-
     $('#pop_background').click(function() {
 
         $('#pop_background').fadeOut();
@@ -507,26 +535,21 @@ function displayeventDetail() {
         currentEvent = "";
         ListOfImgurUrl_OBJ = new Object();
         leagueTeamPPL.innerHTML = "";
+        listOfNameincurrentEvent = [];
 
     });
 
 }
 
-//
+
+//displays the picture of the users who are in this event.
 function displayUsersInEvent(listOfUid) {
     $('#usersInEvent').empty();
-    //so far, you're tihnkning of putting this fucntion in load event detail, just like you ddi with the event listenter. 
-    //except this is seperpate and every change to the user node it updates that event? but ii dont tihnk it works. post it on reddit or brando
+
 
 
     var userListDiv = document.getElementById("usersInEvent");
-    /*
-        var userDataBase = [];
-        $.each(allusers, function(index, value) {
-            userDataBase[index] = value.Full_Name + ";" + value.AWS_Photo_URL;
-            
-        });*/
-    //console.log(allusers);
+
     for (var i = 0; i < listOfUid.length; i++) {
         var x = listOfUid[i] + "";
         var realUID;
@@ -539,11 +562,16 @@ function displayUsersInEvent(listOfUid) {
         }
 
         if (realUID != "N/A") {
-            console.log(realUID)
+            //prints each user in the event
+            //console.log(realUID)
 
             userRef = new Firebase('https://sportnetwork.firebaseio.com/Users/' + realUID);
             userRef.off();
-            userRef.once("value", function(snapshot) {
+            userRef.once("value", function(snapshot, prevChildKey) {
+
+
+                listOfNameincurrentEvent.push(snapshot.key() + ";" + snapshot.val().Full_Name);
+                console.log(snapshot.val().Full_Name);
                 var userDiv = document.createElement('div');
                 userDiv.setAttribute('id', 'userDiv');
 
@@ -557,13 +585,13 @@ function displayUsersInEvent(listOfUid) {
                 userListDiv.appendChild(userDiv);
 
             });
-            
+
         }
     }
 
 
 
-
+    console.log(listOfNameincurrentEvent)
 }
 
 
@@ -622,7 +650,7 @@ function shuffle(array) {
 
     return array;
 }
-
+//the fucntion that reutrsn the array of the league scheudle.
 function schedule(totalPlayer, numTeams, gamesWeek, totalWeeks) {
     //output: 
     var gameCycle = combinations(numTeams, 2);
@@ -753,7 +781,7 @@ function logoutFirebase() {
     rootref.unauth();
     location.reload();
 }
-
+//conversts the people list into UID + Team 
 function convertLeagueArraytoUIDonly(inputArray) {
     var fullListofPeopleinCurrentEvent = new Array();
     $.each(inputArray, function(index, value) {
@@ -771,7 +799,7 @@ function convertLeagueArraytoUIDonly(inputArray) {
     }
     return fullListofPeopleinCurrentEvent
 }
-
+//joins the event
 function joinEvent(e) {
     e.preventDefault();
     var rootref = new Firebase('https://sportnetwork.firebaseio.com');
@@ -863,6 +891,7 @@ function joinEvent(e) {
     }
 }
 
+//joins a specific league team
 function joinLeagueEvent(joiningTeamName) {
     var rootref = new Firebase('https://sportnetwork.firebaseio.com');
     var authData = rootref.getAuth();
