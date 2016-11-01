@@ -337,6 +337,8 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
         var pplwithoutNA = new Array();
         var pplTeamOnly = new Array();
 
+        console.log(listOfNameincurrentEvent);
+
         for (var x = 0; x < pplArray.length; x++) {
             if (pplArray[x] != "N/A") {
                 var uid_Team = pplArray[x] + '';
@@ -353,19 +355,20 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             }
 
         }
-        /*
-        console.log(listOfNameincurrentEvent);
-        console.log(pplwithoutNA);
         
+        
+        
+
+        /*
         for(var x = 0; x < pplwithoutNA.length; x++){
         	var fff = listOfNameincurrentEvent[x];
         	var uidandname = fff.split(";")
         	console.log(uidandname[0]);
 
         }*/
-        console.log(listOfNameincurrentEvent);
+        
 
-
+        
         for (var x = 0; x < amountofTeam; x++) {
             var displayingARR = new Array();
             var counter = 0;
@@ -379,26 +382,9 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             for (var i = 0; i < 10; i++) {
                 var htmlc = document.createElement('td');
                 if (pplTeamOnly[i] == letters[x]) {
-
-
-                    //
-                    var uid = pplwithoutNA[i];
-                    var name;
-
-                    userRef = new Firebase('https://sportnetwork.firebaseio.com/Users/' + uid);
-                    userRef.off();
-                    userRef.once("value", function(snapshot, prevChildKey) {
-
-                        htmlc.innerHTML = snapshot.val().Full_Name;
-                        htmlr.appendChild(htmlc);
-                        counter = counter + 1;
-
-                    });
-
-
-
-
-
+                	var htmlc = document.createElement('td');
+                	htmlc.innerHTML = pplwithoutNA[i];
+                	htmlr.appendChild(htmlc);
 
                 }
 
@@ -508,6 +494,7 @@ function displayeventDetail() {
         displayLeaguePPLName(TT, finalAPPLARR, isLeagueORN);
 
 
+
         var without = convertLeagueArraytoUIDonly(finalAPPLARR);
 
         if (without.indexOf(currentUserUID) > -1) {
@@ -546,7 +533,7 @@ function displayeventDetail() {
 function displayUsersInEvent(listOfUid) {
     $('#usersInEvent').empty();
 
-
+    console.log(listOfUid)
 
     var userListDiv = document.getElementById("usersInEvent");
 
@@ -561,11 +548,13 @@ function displayUsersInEvent(listOfUid) {
             realUID = x;
         }
 
+        
+
         if (realUID != "N/A") {
             //prints each user in the event
-            //console.log(realUID)
+            
 
-            userRef = new Firebase('https://sportnetwork.firebaseio.com/Users/' + realUID);
+            var userRef = new Firebase('https://sportnetwork.firebaseio.com/Users/' + realUID);
             userRef.off();
             userRef.once("value", function(snapshot, prevChildKey) {
 
@@ -591,7 +580,7 @@ function displayUsersInEvent(listOfUid) {
 
 
 
-    console.log(listOfNameincurrentEvent)
+    //console.log(listOfNameincurrentEvent)
 }
 
 
