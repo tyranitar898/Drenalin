@@ -248,6 +248,9 @@ function createTableUsingSched(a, realTN, finGPW, finWTPO) {
 }
 //fucntion to submit a new team name for a leauge
 function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
+    if(newTeamName == ""){
+        return;
+    }
     updateTeamNameRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent + '/League/' + updateTeamLetter);
 
     updateTeamNameRef.update({
@@ -258,7 +261,7 @@ function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
     $('#leagueSched').empty();
     createTableUsingSched(leaguesched, RT, GPW, WTPO);
 
-
+    return false;
 }
 
 //displays the place to edit the team anmes
