@@ -385,6 +385,7 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
                 	var htmlc = document.createElement('td');
                 	htmlc.innerHTML = pplwithoutNA[i];
                 	htmlr.appendChild(htmlc);
+                    counter++;
 
                 }
 
