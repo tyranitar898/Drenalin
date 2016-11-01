@@ -9,8 +9,7 @@ var currentEvent;
 var ListOfImgurUrl_OBJ = new Object();
 
 var listOfNameincurrentEvent = [];
-
-
+var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
 var currentEventOBJ;
 
 var allusers;
@@ -265,7 +264,7 @@ function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
 //displays the place to edit the team anmes
 function leagueTeamNameSubmitDisplay(totalTeams) {
     $('#leagueTeam').empty();
-    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
+    //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
     for (var x = 0; x < totalTeams; x++) {
 
         var teams = document.createElement('p');
@@ -306,7 +305,7 @@ function leagueTeamNameSubmitDisplay(totalTeams) {
 //no paramenter cuz its based on currentEvent variable!
 // gets the real name of the teams from the firebase league OBJ
 function getRealNameArrayFromFirebase(thisEventLeage) {
-    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
+    //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
     realnameArray = [];
 
 
@@ -331,7 +330,7 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
     if (isLeagueOrNot) {
 
-        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
+        //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
         leagueTeamPPL.innerHTML = "";
 
         var pplwithoutNA = new Array();
@@ -371,7 +370,6 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
         
         for (var x = 0; x < amountofTeam; x++) {
             var displayingARR = new Array();
-            var counter = 0;
 
             var htmlr = document.createElement('tr');
             htmlr.setAttribute('id', letters[x]);
@@ -379,18 +377,8 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             var htmlc0 = document.createElement('td');
             htmlc0.innerHTML = "Team  " + letters[x].toUpperCase();
             htmlr.appendChild(htmlc0);
-            for (var i = 0; i < 10; i++) {
-                var htmlc = document.createElement('td');
-                if (pplTeamOnly[i] == letters[x]) {
-                	var htmlc = document.createElement('td');
-                	htmlc.innerHTML = pplwithoutNA[i];
-                	htmlr.appendChild(htmlc);
-                    counter++;
-
-                }
-
-            }
-            var emptySpotsPerTeam = (10 - counter);
+            
+            var emptySpotsPerTeam = (10);
             for (var y = 0; y < emptySpotsPerTeam; y++) {
                 var htmlc = document.createElement('td');
                 htmlc.innerHTML = "";
@@ -549,34 +537,52 @@ function displayUsersInEvent(listOfUid) {
             realUID = x;
         }
 
-        
-
         if (realUID != "N/A") {
             //prints each user in the event
-            
-
             var userRef = new Firebase('https://sportnetwork.firebaseio.com/Users/' + realUID);
             userRef.off();
             userRef.once("value", function(snapshot, prevChildKey) {
 
-
-                listOfNameincurrentEvent.push(snapshot.key() + ";" + snapshot.val().Full_Name);
-                console.log(snapshot.val().Full_Name);
+                var uid = snapshot.key();
+                var name = snapshot.val().Full_Name;
+                listOfNameincurrentEvent.push(uid + ";" + name);
+                console.log(name);
                 var userDiv = document.createElement('div');
                 userDiv.setAttribute('id', 'userDiv');
 
                 var userImage = document.createElement('img');
                 userImage.setAttribute('src', snapshot.val().AWS_Photo_URL);
                 var userName = document.createElement('p');
-                userName.textContent = snapshot.val().Full_Name;
+                userName.textContent = name;
 
                 userDiv.appendChild(userImage);
                 userDiv.appendChild(userName);
                 userListDiv.appendChild(userDiv);
 
 
-
                	//WORK HERE!
+                if(currentEventOBJ.League != undefined){
+                    var team = -1;
+                    leagueTeamPPL = document.getElementById('leaguePPL');
+                    for(var i = 0; i < ListOfImgurUrl_OBJ.length; i++){
+                        temp = ListOfImgurUrl_OBJ[i].split(":");
+                        if(temp[0]==uid){
+                            team = temp[1];
+                        }
+                    }
+                    if(team != undefined){
+                        letters.indexOf(team)
+                        row = leagueTeamPPL.rows[letters.indexOf(team)].cells;
+                        console.log("row"+row.length);
+                        for(var c = 1; c < row.length; c++){
+                            if(row[c].innerHTML == ""){
+                                row[c].innerHTML = name;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
             });
 
         }
@@ -650,7 +656,7 @@ function schedule(totalPlayer, numTeams, gamesWeek, totalWeeks) {
     var weekCycle = gameCycle / gamesWeek;
 
 
-    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
+    //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
     var teamsString = "";
     for (var i = 0; i < numTeams; i++) {
         teamsString = teamsString + letters[i];
