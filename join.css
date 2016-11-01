@@ -71,15 +71,22 @@ tr{
     display: none;
 }
 
+.JoinEventFormWrap{
+    margin: 0 auto;
+    width: 50%;
+    height: 8vh;
+}
+
 #joinEventButton {
+    margin: 0 auto;
     margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 20%;
+    width: 100%;
     padding: 5px;
     background: #43D1AF;
-    height: 10%;
+    height: 100%;
     border: none;
+    color: white;
+    font-size: 3vh;
 }
 
 #joinEventButton:hover {
@@ -111,7 +118,7 @@ body {
 }
 
 #article_holder {
-    margin-top: 60px;
+    margin-top: 120px;
     border: solid 2px black;
     border-bottom: none;
     width: auto;
