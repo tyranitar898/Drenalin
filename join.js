@@ -325,7 +325,9 @@ function getRealNameArrayFromFirebase(thisEventLeage) {
 
 
 
-//MERGE THIS FUCNTON WITH THE OTHER DISPLAY USERS PICTURE, BECAUSE WE SHOULD ONLY HAVE ONE FUNCTION ATTACHED TO A USER LISTENER NODE.!
+//change teams names form Team A.... to Team Aamz!
+
+
 function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
     leagueTeamPPL = document.getElementById('leaguePPL');
