@@ -16,6 +16,11 @@ tr{
     margin-right: 30px;
     padding-bottom: 20px;
 }
+
+.event:last-child{
+    border-bottom: none;
+}
+
 #pplLeagueTitle{
   margin-top: 20px;
 }
@@ -120,7 +125,6 @@ body {
 #article_holder {
     margin-top: 120px;
     border: solid 2px black;
-    border-bottom: none;
     width: auto;
     margin-left: 60px;
     margin-right: 60px;
