@@ -322,8 +322,8 @@ function getRealNameArrayFromFirebase(thisEventLeage) {
 }
 
 
-//fucntion that displays all the teams and the corresponding ppl with their names listed below. Also include a color coded team bordeR??
 
+//MERGE THIS FUCNTON WITH THE OTHER DISPLAY USERS PICTURE, BECAUSE WE SHOULD ONLY HAVE ONE FUNCTION ATTACHED TO A USER LISTENER NODE.!
 function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
     leagueTeamPPL = document.getElementById('leaguePPL');
@@ -574,6 +574,9 @@ function displayUsersInEvent(listOfUid) {
                 userDiv.appendChild(userName);
                 userListDiv.appendChild(userDiv);
 
+
+
+               	//WORK HERE!
             });
 
         }
