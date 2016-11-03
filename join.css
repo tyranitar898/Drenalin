@@ -338,18 +338,25 @@ input[type="button"]:hover {
 
 .join_team{
     float:left;
-    margin-right: 100%;
-    width: 100%;
+    width: 50%;
 }
 
 .submit_team{
-    width: 50%;
+    width: 10%;
+    margin-right: 40%;
 }
 
 #teamName{
   display: inline-block;
   width:200px;
 }
+
+#leagueTeam p{
+    width: 10%;
+    height: 10px;
+    float: left;
+}
+
 table, th, td {
    border: 1px solid black;
 }
@@ -414,11 +421,6 @@ tr {
     font: 95% Roboto, Arial, Helvetica, sans-serif;
 }
 
-#leagueTeam p{
-    width: 100%;
-    height: 10px;
-    float: left;
-}
 
 table.not_empty{
     width: 100%;

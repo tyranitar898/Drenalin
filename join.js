@@ -350,7 +350,6 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
                 pplwithoutNA.push(fi[0]);
 
-
                 if (fi[1] == undefined) {
                     pplTeamOnly.push("NoTeam");
                 } else {
@@ -439,6 +438,7 @@ function displayeventDetail() {
 
     var thisEventLeage;
 
+
     var rootRef = new Firebase('https://sportnetwork.firebaseio.com');
 
     eventRef = rootRef.child('Events');
@@ -460,7 +460,7 @@ function displayeventDetail() {
 
         if (thisEventLeage != undefined) {
             console.log("this is a league event");
-
+            console.log(thisEventLeage);
             TP = thisEventLeage["fuckbrandon"]["totalPlayer"];
             TT = thisEventLeage["fuckbrandon"]["totalTeams"];
             GPW = thisEventLeage["fuckbrandon"]["gamesPerWeek"];
