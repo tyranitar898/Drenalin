@@ -270,15 +270,25 @@ function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
 function leagueTeamNameSubmitDisplay(totalTeams, team) {
     $('#leagueTeam').empty();
     //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
-    for (var x = 0; x < totalTeams; x++) {
 
+    var maxWidth = 0;
+    for (var i = 0; i < totalTeams; i++){
+        var teamName = thisEventLeage[letters[i]]["name"];
+        var teamNameLen = teamName.length;
+        var width = teamNameLen * 1.5;
+        if(maxWidth < width){
+            maxWidth = width;
+        }
+    }
+
+    for (var x = 0; x < totalTeams; x++) {
         var teams = document.createElement('p');
         var teamName = thisEventLeage[letters[x]]["name"];
         teams.textContent = teamName;
         var teamNameLen = teamName.length;
-        var width = teamNameLen * 1.5;
-        var width2 = 100 - 50 - width;
-        teams.setAttribute('style', 'width: ' + width + '%;');
+        var width = 20;
+        var width2 = 100 - width - maxWidth;
+        teams.setAttribute('style', 'width: ' + maxWidth + '%;');
 
         var joinTeamSubmit = document.createElement('input');
         joinTeamSubmit.setAttribute('name', letters[x]);
@@ -286,7 +296,7 @@ function leagueTeamNameSubmitDisplay(totalTeams, team) {
         joinTeamSubmit.setAttribute('value', 'Join this Team!');
         joinTeamSubmit.setAttribute('onclick', 'joinLeagueEvent(this.name)');
         joinTeamSubmit.className = "join_team";
-        joinTeamSubmit.setAttribute('style', 'margin-right: ' + width2 + '%; width: 50%');
+        joinTeamSubmit.setAttribute('style', 'width: '+width+'%; margin-right: ' +width2+'%;');
         //firebaseupdate people in the teams #joining
 
         document.getElementById("leagueTeam").appendChild(teams);
