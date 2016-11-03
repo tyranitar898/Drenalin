@@ -425,6 +425,7 @@ tr {
 table.not_empty{
     width: 100%;
     border: 3px solid #43D1AF;
+    margin-top: 2vh;
 }
 
 .empty{

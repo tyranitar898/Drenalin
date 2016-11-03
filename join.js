@@ -39,6 +39,7 @@ function getStff() {
         console.log("Logged in as   " + authData.uid)
         loadEventInfo(authData.uid);
         currentUserUID = authData.uid;
+
     } else {
         //this guy is not logged in!
         loadEventInfo("");
@@ -300,7 +301,7 @@ function leagueTeamNameSubmitDisplay(totalTeams, team) {
         //firebaseupdate people in the teams #joining
 
         document.getElementById("leagueTeam").appendChild(teams);
-        console.log(team);
+
         if (team == letters[x]) {
             displayTeamSubmit(x, width);
         } else {
@@ -484,11 +485,9 @@ function displayeventDetail() {
 
         listOfUid = ListOfImgurUrl_OBJ;
         var finalAPPLARR = convertOBJtoARR(listOfUid);
-        var rootref = new Firebase('https://sportnetwork.firebaseio.com');
-        var authData = rootref.getAuth();
-        var uid = authData.uid;
+        
         var team;
-        if (uid == null) {
+        if (currentUserUID == null) {
             team = '0';
         } else {
             for (var u = 0; u < listOfUid.length; u++) {
@@ -496,13 +495,13 @@ function displayeventDetail() {
                 var temp = current.split(":");
                 if (current == "N/A") {
                     break;
-                } else if (temp[0] == uid) {
+                } else if (temp[0] == currentUserUID) {
                     team = temp[1];
                 }
             }
         }
 
-        console.log(team);
+
 
         if (thisEventLeage != undefined) {
             console.log("this is a league event");
