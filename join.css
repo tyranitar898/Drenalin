@@ -1,9 +1,26 @@
 html,
 body,
-section {
+section,
+div {
     overflow: scroll;
     font-family: Roboto;
 }
+
+#title{
+    font-family: Roboto;
+    text-align: center;
+    height: 20vh;
+}
+
+#title p{
+    margin-top: 5vh;
+    margin: 0 auto;
+    width: 50%;
+    height: inherit;
+    line-height: 20vh;
+    font-size: 4vw;
+}
+
 tr{
   width:100%;
   border:1px solid black;
@@ -123,7 +140,7 @@ body {
 }
 
 #article_holder {
-    margin-top: 120px;
+    margin-top: 20px;
     border: solid 2px black;
     width: auto;
     margin-left: 60px;
@@ -300,13 +317,12 @@ hgroup {
     border: 1px solid #43D1AF;
 }
 
-.form-style-6 input[type="submit"],
-.form-style-6 input[type="button"] {
+input[type="submit"],
+input[type="button"] {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    width: 100%;
-    padding: 3%;
+    padding: 1%;
     background: #43D1AF;
     border-bottom: 2px solid #30C29E;
     border-top-style: none;
@@ -315,10 +331,21 @@ hgroup {
     color: #fff;
 }
 
-.form-style-6 input[type="submit"]:hover,
-.form-style-6 input[type="button"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover {
     background: #2EBC99;
 }
+
+.join_team{
+    float:left;
+    margin-right: 100%;
+    width: 100%;
+}
+
+.submit_team{
+    width: 50%;
+}
+
 #teamName{
   display: inline-block;
   width:200px;
@@ -391,15 +418,6 @@ tr {
     width: 100%;
     height: 10px;
     float: left;
-}
-
-.join_team{
-    float:left;
-    margin-right: 100%;
-}
-
-.submit_team{
-    padding:3%;
 }
 
 table.not_empty{
