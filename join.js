@@ -272,11 +272,11 @@ function leagueTeamNameSubmitDisplay(totalTeams, team) {
     //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
 
     var maxWidth = 0;
-    for (var i = 0; i < totalTeams; i++){
+    for (var i = 0; i < totalTeams; i++) {
         var teamName = thisEventLeage[letters[i]]["name"];
         var teamNameLen = teamName.length;
         var width = teamNameLen * 1.5;
-        if(maxWidth < width){
+        if (maxWidth < width) {
             maxWidth = width;
         }
     }
@@ -296,7 +296,7 @@ function leagueTeamNameSubmitDisplay(totalTeams, team) {
         joinTeamSubmit.setAttribute('value', 'Join this Team!');
         joinTeamSubmit.setAttribute('onclick', 'joinLeagueEvent(this.name)');
         joinTeamSubmit.className = "join_team";
-        joinTeamSubmit.setAttribute('style', 'width: '+width+'%; margin-right: ' +width2+'%;');
+        joinTeamSubmit.setAttribute('style', 'width: ' + width + '%; margin-right: ' + width2 + '%;');
         //firebaseupdate people in the teams #joining
 
         document.getElementById("leagueTeam").appendChild(teams);
@@ -323,8 +323,8 @@ function displayTeamSubmit(index, width) {
     teamSubmit.setAttribute('type', 'submit');
     teamSubmit.setAttribute('onclick', 'updateTeamNameToFirebase(this.name,this.previousSibling.value)');
     teamSubmit.className = "submit_team";
-    var width2 = 100-width-50-10;
-    teamSubmit.setAttribute('style','width: 10%; margin-right: '+width2+'%;')
+    var width2 = 100 - width - 50 - 10;
+    teamSubmit.setAttribute('style', 'width: 10%; margin-right: ' + width2 + '%;')
 
     document.getElementById("leagueTeam").appendChild(teamsName);
     document.getElementById("leagueTeam").appendChild(teamSubmit);
@@ -488,13 +488,17 @@ function displayeventDetail() {
         var authData = rootref.getAuth();
         var uid = authData.uid;
         var team;
-        for (var u = 0; u < listOfUid.length; u++) {
-            var current = listOfUid[u];
-            var temp = current.split(":");
-            if (current == "N/A") {
-                break;
-            } else if (temp[0] == uid) {
-                team = temp[1];
+        if (uid == null) {
+            team = '0';
+        } else {
+            for (var u = 0; u < listOfUid.length; u++) {
+                var current = listOfUid[u];
+                var temp = current.split(":");
+                if (current == "N/A") {
+                    break;
+                } else if (temp[0] == uid) {
+                    team = temp[1];
+                }
             }
         }
 
@@ -963,10 +967,8 @@ function joinLeagueEvent(joiningTeamName) {
         displayLeaguePPLName(TT, urlARR, true);
 
     }
+
     return false;
 }
-
-
-
 
 window.onload = getStff
