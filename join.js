@@ -12,7 +12,9 @@ var listOfNameincurrentEvent = [];
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
 var currentEventOBJ;
 
-var allusers;
+var listOfUid;
+
+var thisEventLeage;
 //create callback fucntion that dsiables THE 
 
 // start fucntion that gets all infor from event node
@@ -248,7 +250,7 @@ function createTableUsingSched(a, realTN, finGPW, finWTPO) {
 }
 //fucntion to submit a new team name for a leauge
 function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
-    if(newTeamName == ""){
+    if (newTeamName == "") {
         return;
     }
     updateTeamNameRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent + '/League/' + updateTeamLetter);
@@ -265,25 +267,18 @@ function updateTeamNameToFirebase(updateTeamLetter, newTeamName) {
 }
 
 //displays the place to edit the team anmes
-function leagueTeamNameSubmitDisplay(totalTeams) {
+function leagueTeamNameSubmitDisplay(totalTeams, team) {
     $('#leagueTeam').empty();
     //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
     for (var x = 0; x < totalTeams; x++) {
 
         var teams = document.createElement('p');
-        teams.textContent = "Team " + letters[x].toUpperCase();
-
-        var teamsName = document.createElement('input');
-        teamsName.setAttribute('type', 'text');
-        teamsName.setAttribute('id', 'teamName');
-        teamsName.setAttribute('placeholder', 'Enter Team Name here');
-
-        var teamSubmit = document.createElement('input');
-        teamSubmit.setAttribute('name', letters[x]);
-        teamSubmit.setAttribute('type', 'submit');
-        teamSubmit.setAttribute('onclick', 'updateTeamNameToFirebase(this.name,this.previousSibling.value)');
-        teamSubmit.className = "submit_team";
-        //firebaseupdateteams
+        var teamName = thisEventLeage[letters[x]]["name"];
+        teams.textContent = teamName;
+        var teamNameLen = teamName.length;
+        var width = teamNameLen * 1.5;
+        var width2 = 100 - 50 - width;
+        teams.setAttribute('style', 'width: ' + width + '%;');
 
         var joinTeamSubmit = document.createElement('input');
         joinTeamSubmit.setAttribute('name', letters[x]);
@@ -291,18 +286,35 @@ function leagueTeamNameSubmitDisplay(totalTeams) {
         joinTeamSubmit.setAttribute('value', 'Join this Team!');
         joinTeamSubmit.setAttribute('onclick', 'joinLeagueEvent(this.name)');
         joinTeamSubmit.className = "join_team";
+        joinTeamSubmit.setAttribute('style', 'margin-right: ' + width2 + '%; width: 50%');
         //firebaseupdate people in the teams #joining
-
 
         document.getElementById("leagueTeam").appendChild(teams);
         document.getElementById("leagueTeam").appendChild(joinTeamSubmit);
-        document.getElementById("leagueTeam").appendChild(teamsName);
-        document.getElementById("leagueTeam").appendChild(teamSubmit);
-
-
+        console.log(team);
+        if (team == letters[x]) {
+            displayTeamSubmit(x);
+        }
 
     }
 
+}
+
+//displays the place players can change team name
+function displayTeamSubmit(index) {
+    var teamsName = document.createElement('input');
+    teamsName.setAttribute('type', 'text');
+    teamsName.setAttribute('id', 'teamName');
+    teamsName.setAttribute('placeholder', 'Enter Team Name here');
+
+    var teamSubmit = document.createElement('input');
+    teamSubmit.setAttribute('name', letters[index]);
+    teamSubmit.setAttribute('type', 'submit');
+    teamSubmit.setAttribute('onclick', 'updateTeamNameToFirebase(this.name,this.previousSibling.value)');
+    teamSubmit.className = "submit_team";
+
+    document.getElementById("leagueTeam").appendChild(teamsName);
+    document.getElementById("leagueTeam").appendChild(teamSubmit);
 }
 
 //no paramenter cuz its based on currentEvent variable!
@@ -358,20 +370,20 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             }
 
         }
-        
-        
-        
+
+
+
 
         /*
         for(var x = 0; x < pplwithoutNA.length; x++){
-        	var fff = listOfNameincurrentEvent[x];
-        	var uidandname = fff.split(";")
-        	console.log(uidandname[0]);
+            var fff = listOfNameincurrentEvent[x];
+            var uidandname = fff.split(";")
+            console.log(uidandname[0]);
 
         }*/
-        
 
-        
+
+
         for (var x = 0; x < amountofTeam; x++) {
             var displayingARR = new Array();
 
@@ -379,9 +391,10 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
             htmlr.setAttribute('id', letters[x]);
 
             var htmlc0 = document.createElement('td');
-            htmlc0.innerHTML = "Team  " + letters[x].toUpperCase();
+            var teamName = thisEventLeage[letters[x]]["name"];
+            htmlc0.innerHTML = teamName;
             htmlr.appendChild(htmlc0);
-            
+
             var emptySpotsPerTeam = (10);
             for (var y = 0; y < emptySpotsPerTeam; y++) {
                 var htmlc = document.createElement('td');
@@ -436,8 +449,6 @@ function displayeventDetail() {
     $('#pop_background').fadeIn();
     $('#pop_box2').fadeIn();
 
-    var thisEventLeage;
-
 
     var rootRef = new Firebase('https://sportnetwork.firebaseio.com');
 
@@ -458,6 +469,24 @@ function displayeventDetail() {
         ListOfImgurUrl_OBJ = snapshot.val().UsersInEvent;
         console.log("this Events firebase data has been fucked with")
 
+        listOfUid = ListOfImgurUrl_OBJ;
+        var finalAPPLARR = convertOBJtoARR(listOfUid);
+        var rootref = new Firebase('https://sportnetwork.firebaseio.com');
+        var authData = rootref.getAuth();
+        var uid = authData.uid;
+        var team;
+        for (var u = 0; u < listOfUid.length; u++) {
+            var current = listOfUid[u];
+            var temp = current.split(":");
+            if (current == "N/A") {
+                break;
+            } else if (temp[0] == uid) {
+                team = temp[1];
+            }
+        }
+
+        console.log(team);
+
         if (thisEventLeage != undefined) {
             console.log("this is a league event");
             console.log(thisEventLeage);
@@ -469,11 +498,9 @@ function displayeventDetail() {
 
             leaguesched = schedule(TP, TT, GPW, WTPO);
 
-
-
             var RT = getRealNameArrayFromFirebase(thisEventLeage);
             createTableUsingSched(leaguesched, RT, GPW, WTPO);
-            leagueTeamNameSubmitDisplay(TT);
+            leagueTeamNameSubmitDisplay(TT, team);
             leagueSchedDiv.className = "not_empty"
 
         } else {
@@ -481,7 +508,7 @@ function displayeventDetail() {
             $('#leagueTeam').empty();
             $('#pplLeagueTitle').empty();
         }
-        var finalAPPLARR = convertOBJtoARR(ListOfImgurUrl_OBJ);
+
         //league PPL name display
         var isLeagueORN = (currentEventOBJ.League != undefined);
         displayUsersInEvent(finalAPPLARR);
@@ -565,29 +592,29 @@ function displayUsersInEvent(listOfUid) {
                 userListDiv.appendChild(userDiv);
 
 
-               	//WORK HERE!
-                if(currentEventOBJ.League != undefined){
+                //WORK HERE!
+                if (currentEventOBJ.League != undefined) {
                     var team = -1;
                     leagueTeamPPL = document.getElementById('leaguePPL');
-                    for(var i = 0; i < ListOfImgurUrl_OBJ.length; i++){
+                    for (var i = 0; i < ListOfImgurUrl_OBJ.length; i++) {
                         temp = ListOfImgurUrl_OBJ[i].split(":");
-                        if(temp[0]==uid){
+                        if (temp[0] == uid) {
                             team = temp[1];
                         }
                     }
-                    if(team != undefined){
+                    if (team != undefined) {
                         letters.indexOf(team)
                         row = leagueTeamPPL.rows[letters.indexOf(team)].cells;
-                        console.log("row"+row.length);
-                        for(var c = 1; c < row.length; c++){
-                            if(row[c].innerHTML == ""){
+                        console.log("row" + row.length);
+                        for (var c = 1; c < row.length; c++) {
+                            if (row[c].innerHTML == "") {
                                 row[c].innerHTML = name;
                                 break;
                             }
                         }
                     }
                 }
-                
+
             });
 
         }
@@ -817,8 +844,6 @@ function joinEvent(e) {
 
         //UR LOGGED IN
 
-
-
         usersinEventRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + current_event + '/UsersInEvent');
 
 
@@ -842,8 +867,6 @@ function joinEvent(e) {
                 "TotalSpotsAvaliable": totalSpot + 1
             });
             usersinEventRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + current_event + '/UsersInEvent');
-
-
 
             var urlARR = convertOBJtoARR(ListOfImgurUrl_OBJ);
 
@@ -902,7 +925,6 @@ function joinLeagueEvent(joiningTeamName) {
     var x = document.getElementById("eventdetail_eventname").innerHTML;
     var current_event = x.toLowerCase();
 
-
     if (authData == null) {
         swal("Not logged in", "You must be logged in to join an event!")
 
@@ -924,12 +946,8 @@ function joinLeagueEvent(joiningTeamName) {
             usersinEventRef.update(theGuyWhoIsJoiningALeague);
         }
 
-
-
         var urlARR = convertOBJtoARR(ListOfImgurUrl_OBJ);
         displayLeaguePPLName(TT, urlARR, true);
-
-
 
     }
     return false;

@@ -325,16 +325,20 @@ function getStff() {
 
     var canvas = map.getCanvasContainer();
 
+    var initialLng = 121.276029722167;
+    var initialLat = 31.2069089106785;
     var geojson = {
         "type": "FeatureCollection",
         "features": [{
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [121.276029722167, 31.2069089106785]
+                "coordinates": [initialLng, initialLat]
             }
         }]
     };
+
+    coordinates.innerHTML = 'Longitude: ' + initialLng + '<br />Latitude: ' + initialLat;
 
     function mouseDown(e) {
         if (!isCursorOverPoint) return;
