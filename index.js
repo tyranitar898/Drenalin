@@ -15,7 +15,7 @@ function getStff() {
     document.getElementById("submit_Create").addEventListener("click", createUser);
 
     document.getElementById("imgurInfoButton").onclick = function () { 
-        swal("Upload a photo to imgur.com!", "It's pretty simple. Go to imgur.com and select upload image. Once you've it has been uploaded succesfully, copy the image URl. Then paste it in here!"); 
+        swal("Upload a photo to imgur.com!", "It's pretty simple. Go to imgur.com and select upload image. Once you've it has been uploaded succesfully, right click the image url and click copy image url. Then paste it in here!"); 
     };
 
 
