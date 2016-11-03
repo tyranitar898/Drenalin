@@ -1,3 +1,7 @@
+body, a{
+  font-family: Roboto;
+}
+
 #pop_background{
   position: fixed;
   width:100%;
@@ -25,7 +29,7 @@
 }
 .form-style-6{
   align-content: center
-    font: 95% Arial, Helvetica, sans-serif;
+    font: 95% Arial, Roboto, sans-serif;
     max-width: 400px;
     margin: 10px auto;
     padding: 16px;
