@@ -290,10 +290,11 @@ function leagueTeamNameSubmitDisplay(totalTeams, team) {
         //firebaseupdate people in the teams #joining
 
         document.getElementById("leagueTeam").appendChild(teams);
-        document.getElementById("leagueTeam").appendChild(joinTeamSubmit);
         console.log(team);
         if (team == letters[x]) {
-            displayTeamSubmit(x);
+            displayTeamSubmit(x, width);
+        } else {
+            document.getElementById("leagueTeam").appendChild(joinTeamSubmit);
         }
 
     }
@@ -301,7 +302,7 @@ function leagueTeamNameSubmitDisplay(totalTeams, team) {
 }
 
 //displays the place players can change team name
-function displayTeamSubmit(index) {
+function displayTeamSubmit(index, width) {
     var teamsName = document.createElement('input');
     teamsName.setAttribute('type', 'text');
     teamsName.setAttribute('id', 'teamName');
@@ -312,6 +313,8 @@ function displayTeamSubmit(index) {
     teamSubmit.setAttribute('type', 'submit');
     teamSubmit.setAttribute('onclick', 'updateTeamNameToFirebase(this.name,this.previousSibling.value)');
     teamSubmit.className = "submit_team";
+    var width2 = 100-width-50-10;
+    teamSubmit.setAttribute('style','width: 10%; margin-right: '+width2+'%;')
 
     document.getElementById("leagueTeam").appendChild(teamsName);
     document.getElementById("leagueTeam").appendChild(teamSubmit);
