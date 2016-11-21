@@ -2,7 +2,7 @@ html,
 body,
 section,
 div {
-    overflow: scroll;
+
     font-family: Roboto;
 }
 
