@@ -58,21 +58,27 @@
             <div class="form-style-5">
                 <h1 id="eventdetail_eventname" class="title">Title of Event</h1>
                 <div class="detailDiv">
-                    <p id="eventdetail_Location" class="detail">Location of Event</p>
-                    <p id="eventdetail_Time" class="detail">Time of Event</p>
-                    <p id="eventdetail_Type" class="detail">Type of Event</p>
-                    <p id="eventdetail_TotalSpotsAvaliable" class="detail">TotalSpotsAvaliable of Event</p>
-                    <p id="eventdetail_Class" class="detail"></p>
-                    <p id="placeholder" class="detail"></p>
+                    <h2 id="eventdetail_Location" class="detail">Location of Event</h2>
+                    <h2 id="eventdetail_Time" class="detail">Time of Event</h2>
+                    <h2 id="eventdetail_Type" class="detail">Type of Event</h2>
+                    <h2 id="eventdetail_TotalSpotsAvaliable" class="detail">TotalSpotsAvaliable of Event</h2>
+                    <h2 id="eventdetail_Class" class="detail"></h2>
+                    <h2 id="placeholder" class="detail"></h2>
                     <h2 id="eventdetail_eventdescription" class="detail">Description of Event</h2>
                 </div>
                 <div id="usersInEvent"></div>
                 <div id="leagueTeam"></div>
                 <table id="leagueSched"></table>
                 <div id="pplLeagueTitle">
-                    <p id="pplLeagueTitle">People in Your League</p>
+                    <h2 id="pplLeagueTitle">People in Your League</h2>
                 </div>
                 <table id="leaguePPL"></table>
+                <h2>Event Comments</h2>
+                <p id="eventComment"></p>
+                <form>
+                    <input type="text" id="commentText" placeholder="Comment on this event!" margin-top="10px"/>
+                    <input type="submit" id="commentSubmit" />
+                </form>
                 <form class="JoinEventFormWrap">
                     <input type="submit" id="joinEventButton" name="real" />
                 </form>

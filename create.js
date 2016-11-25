@@ -4,10 +4,7 @@ var finalcoords = [0, 0];
                 <option value="recurring">Every XX</option>
                 <option value="league">League Event</option>*/
 
-/* NOTESSS!!
 
-CREATE LOCAL VARIABELS TO STORE THE CONOSLE.LOG SO THE PRESSON CAN TYP1222 BUT NOTHING W
-*/
 
 var finNumPLa = 0;
 var finNumTea = 0;
@@ -529,6 +526,7 @@ function createEvent(e) {
                     20: "N/A",
                 },
                 League: insideleague,
+                Comments:"",
 
             });
             console.log("You've created an Event:" + name + "\nTell your freinds to check it out!");

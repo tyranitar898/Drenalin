@@ -1,4 +1,5 @@
 var currentUserUID = "";
+var currentName;
 var TP;
 var TT;
 var GPW;
@@ -7,6 +8,11 @@ var realnameArray;
 var leaguesched;
 var currentEvent;
 var ListOfImgurUrl_OBJ = new Object();
+var CommentsofEvent;
+
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 var listOfNameincurrentEvent = [];
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
@@ -31,7 +37,7 @@ function getStff() {
         //console.log("Authenticated user with uid:", authData.uid);
         var thisref = new Firebase('https://sportnetwork.firebaseio.com/Users/' + authData.uid);
         thisref.once("value", function(snap) {
-
+            currentName = snap.val().Full_Name;
             document.getElementById("userImage").src = snap.val().AWS_Photo_URL;
             document.getElementById("userNameTop").innerHTML = snap.val().Full_Name;
         });
@@ -431,6 +437,32 @@ function convertOBJtoARR(UIEobj) {
     return finallist;
 }
 
+function postComment(e) {
+    
+
+    var comment = document.getElementById('commentText').value;
+    var n = new Date();
+
+    var y = n.getFullYear();
+    var m = n.getMonth();
+    var d = n.getDate();
+    var h = n.getHours();
+    var min = n.getMinutes();
+    if(min<10){
+        min = "0"+min;
+    }
+    var finalCom = CommentsofEvent +"On "+monthNames[m]+"/"+d+" "+h+":"+min+" "+currentName+" said \""+comment+ "\",";
+    updateCommentRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent);
+
+    updateCommentRef.update({
+        "Comments": finalCom,
+    });
+    e.preventDefault();
+
+
+
+}
+
 //displays the event detail window
 function displayeventDetail() {
 
@@ -477,6 +509,18 @@ function displayeventDetail() {
         document.getElementById('eventdetail_Class').innerHTML = "This is a " + snapshot.val().EventClass + " event";
         document.getElementById('eventdetail_Time').innerHTML = "Time of Event: " + snapshot.val().Time;
         document.getElementById('eventdetail_TotalSpotsAvaliable').innerHTML = "Spots left: " + snapshot.val().TotalSpotsAvaliable;
+        
+
+        var firebaseComment = snapshot.val().Comments.split(",");
+        var finalcommentstring ="";
+        for(var x = 0;x<firebaseComment.length;x++){
+            finalcommentstring=finalcommentstring+firebaseComment[x]+"<br>";
+        }
+        console.log(firebaseComment);
+
+        document.getElementById('eventComment').innerHTML = finalcommentstring;
+
+        CommentsofEvent = snapshot.val().Comments;
         totalSpot = snapshot.val().TotalSpotsAvaliable;
         thisEventLeage = snapshot.val().League;
         currentEventOBJ = snapshot.val();
@@ -485,7 +529,7 @@ function displayeventDetail() {
 
         listOfUid = ListOfImgurUrl_OBJ;
         var finalAPPLARR = convertOBJtoARR(listOfUid);
-        
+
         var team;
         if (currentUserUID == null) {
             team = '0';
@@ -530,7 +574,8 @@ function displayeventDetail() {
         displayUsersInEvent(finalAPPLARR);
         displayLeaguePPLName(TT, finalAPPLARR, isLeagueORN);
 
-
+        //comment button func!
+        document.getElementById('commentSubmit').addEventListener("click", postComment);
 
         var without = convertLeagueArraytoUIDonly(finalAPPLARR);
 
@@ -560,6 +605,7 @@ function displayeventDetail() {
         ListOfImgurUrl_OBJ = new Object();
         leagueTeamPPL.innerHTML = "";
         listOfNameincurrentEvent = [];
+
 
     });
 
@@ -594,7 +640,7 @@ function displayUsersInEvent(listOfUid) {
                 var uid = snapshot.key();
                 var name = snapshot.val().Full_Name;
                 listOfNameincurrentEvent.push(uid + ";" + name);
-                console.log(name);
+                
                 var userDiv = document.createElement('div');
                 userDiv.setAttribute('id', 'userDiv');
 
@@ -608,7 +654,7 @@ function displayUsersInEvent(listOfUid) {
                 userListDiv.appendChild(userDiv);
 
 
-                //WORK HERE!
+
                 if (currentEventOBJ.League != undefined) {
                     var team = -1;
                     leagueTeamPPL = document.getElementById('leaguePPL');
@@ -621,7 +667,7 @@ function displayUsersInEvent(listOfUid) {
                     if (team != undefined) {
                         letters.indexOf(team)
                         row = leagueTeamPPL.rows[letters.indexOf(team)].cells;
-                        console.log("row" + row.length);
+                        
                         for (var c = 1; c < row.length; c++) {
                             if (row[c].innerHTML == "") {
                                 row[c].innerHTML = name;
