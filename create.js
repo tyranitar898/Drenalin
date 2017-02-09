@@ -57,7 +57,7 @@ function eventTypeDropDown(selectValue) {
             if (event.charCode >= 48 && event.charCode <= 57) {
                 numTeams.onkeyup = function() {
                     if (this.value != "") {
-                        if (limit12(this.value)) {
+                        if (limit20(this.value)) {
                             finNumTea = parseInt(this.value);
                             checkall4notempty();
                         }
@@ -76,7 +76,7 @@ function eventTypeDropDown(selectValue) {
             if (event.charCode >= 48 && event.charCode <= 57) {
                 gamesPerWeek.onkeyup = function() {
                     if (this.value != "") {
-                        if (limit12(this.value)) {
+                        if (limit20(this.value)) {
                             finGPW = parseInt(this.value);
                             checkall4notempty();
                         }
@@ -95,7 +95,7 @@ function eventTypeDropDown(selectValue) {
             if (event.charCode >= 48 && event.charCode <= 57) {
                 weeksTillPlayoff.onkeyup = function() {
                     if (this.value != "") {
-                        if (limit12(this.value)) {
+                        if (limit20(this.value)) {
                             finWTPO = parseInt(this.value);
                             checkall4notempty();
                         }
@@ -120,13 +120,11 @@ function eventTypeDropDown(selectValue) {
 
 }
 
-function limit12(stringNum) {
+function limit20(stringNum) {
 
     var num = parseInt(stringNum);
-    if (num < 13) {
-        return true;
-    }
-    return false;
+    return num < 20;
+        
 }
 
 function product_Range(a, b) {
@@ -473,7 +471,7 @@ function createEvent(e) {
 
 
                 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
-                insideleague["fuckbrandon"]={'totalPlayer':finNumPLa,'totalTeams':finNumTea,'gamesPerWeek':finGPW,'weeksTillPlayoff':finWTPO}
+                insideleague["zzzfuckbrandon"]={'totalPlayer':finNumPLa,'totalTeams':finNumTea,'gamesPerWeek':finGPW,'weeksTillPlayoff':finWTPO}
                 for (x = 0; x < finNumTea; x++) { //umber of teams times
 
                     var teams = "Team " + letters[x].toUpperCase();

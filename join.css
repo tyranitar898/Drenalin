@@ -2,17 +2,16 @@ html,
 body,
 section,
 div {
-
     font-family: Roboto;
 }
 
-#title{
+#title {
     font-family: Roboto;
     text-align: center;
     height: 20vh;
 }
 
-#title p{
+#title p {
     margin-top: 5vh;
     margin: 0 auto;
     width: 50%;
@@ -21,11 +20,12 @@ div {
     font-size: 4vw;
 }
 
-tr{
-  width:100%;
-  border:1px solid black;
-  margin-top: 10px;
+tr {
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 10px;
 }
+
 .event {
     border-bottom: solid 2px black;
     width: auto;
@@ -34,12 +34,12 @@ tr{
     padding-bottom: 20px;
 }
 
-.event:last-child{
+.event:last-child {
     border-bottom: none;
 }
 
-#pplLeagueTitle{
-  margin-top: 20px;
+#pplLeagueTitle {
+    margin-top: 20px;
 }
 
 .event p {
@@ -48,7 +48,6 @@ tr{
     color: rgb(160, 160, 160);
     margin: 5px;
 }
-
 
 .event h1 {
     font-size: 30px;
@@ -93,7 +92,7 @@ tr{
     display: none;
 }
 
-.JoinEventFormWrap{
+.JoinEventFormWrap {
     margin: 0 auto;
     width: 50%;
     height: 8vh;
@@ -132,7 +131,6 @@ tr{
     border: 2px solid black;
     border-color: #43D1AF;
     text-align: center;
-    
 }
 
 body {
@@ -341,79 +339,107 @@ input[type="button"]:hover,
     background: #2EBC99;
 }
 
-#loginButton{
+#loginButton {
     width: 100%;
     padding: 3%;
     font-size: 100%;
 }
 
-.join_team{
-    float:left;
+.join_team {
+    float: left;
     width: 20%;
 }
 
-.submit_team{
+.submit_team {
     width: 10%;
     margin-right: 40%;
 }
 
-#teamName{
-  display: inline-block;
-  width:50%;
+#teamName {
+    display: inline-block;
+    width: 50%;
 }
 
-#leagueTeam p{
+#leagueTeam p {
     height: 10px;
     float: left;
 }
 
-table, th, td {
-   border: 1px solid black;
+table,
+th,
+td {
+    border: 1px solid black;
 }
+
 td {
     width: 100px;
 }
+
 tr {
     height: 50px;
 }
+
 @media(min-width: 1100px) {
     #rightDiv {
-    width: 27%;
-    padding: 5px;
-    float: right;
+        width: 27%;
+        padding: 5px;
+        float: right;
+    }
 }
-}
+
 @media(min-width: 1490px) {
     #rightDiv {
-    width: 24%;
-    padding: 5px;
-    float: right;
-}
+        width: 24%;
+        padding: 5px;
+        float: right;
+    }
 }
 
-#usersInEvent{
+#usersInEvent {
     width: 100%;
     height: 100%;
+    margin-top: 5%
 }
 
-.detailDiv{
+.detailDiv {
     width: 100%;
     height: 75%;
     overflow: hidden;
     padding-left: 2%;
 }
 
-.detail{
+.detail {
     width: 45%;
     height: 5vh;
     float: left;
+    margin-bottom: 10px;
 }
 
-#teamName:focus{
+#teamName:focus {
     box-shadow: 0 0 5px #43D1AF;
     border: 1px solid #43D1AF;
 }
-#teamName,#commentText{
+
+#commentText,
+#matchText {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 70%;
+    background: #fff;
+    margin-bottom: 2%;
+    border: 1px solid #ccc;
+    padding: 1%;
+    color: #555;
+    font: 95% Roboto, Arial, Helvetica, sans-serif;
+}
+
+#teamName {
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
@@ -431,23 +457,22 @@ tr {
     font: 95% Roboto, Arial, Helvetica, sans-serif;
 }
 
-
-table.not_empty{
+table.not_empty {
     width: 100%;
     border: 3px solid #43D1AF;
     margin-top: 2vh;
 }
 
-.empty{
+.empty {
     display: none;
 }
 
-table tr{
+table tr {
     width: inherit;
     margin: auto;
 }
 
-table td{
+table td {
     border: none;
     border-bottom: 1px solid #43D1AF;
     padding: 5px;

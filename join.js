@@ -9,9 +9,10 @@ var leaguesched;
 var currentEvent;
 var ListOfImgurUrl_OBJ = new Object();
 var CommentsofEvent;
+var totalSpot = 0;
 
 var monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+    "July", "August", "September", "October", "November", "December"
 ];
 
 var listOfNameincurrentEvent = [];
@@ -96,9 +97,6 @@ function loadEventInfo(ID) {
         leftDiv.setAttribute('id', "leftDiv");
         rightDiv.setAttribute('id', "rightDiv");
 
-
-
-
         if (ID == "") {
             // not logged in, so all events will hvae a unclicked join button
             joinImage.setAttribute('src', 'Joinbutton_unclicked.png');
@@ -173,8 +171,6 @@ function loadEventInfo(ID) {
         newEvent.appendChild(leftDiv);
         newEvent.appendChild(rightDiv);
 
-        //time remainign
-
 
         //appends article to html
         document.getElementById("article_holder").appendChild(newEvent);
@@ -202,7 +198,7 @@ function getTimeRemaining(endtime) {
 
 //array of people NOT including "N/A" in the event you click on
 
-var totalSpot = 0;
+
 //
 var fullListofPeopleinCurrentEvent = new Array();
 var currentEvent = "";
@@ -212,7 +208,7 @@ var FullEventName = "";
 //creates a elague schuelde table using the 4 input numbers.
 function createTableUsingSched(a, realTN, finGPW, finWTPO) {
     $('#leagueSched').empty();
-    //FIRST ROW SPECIAL
+    //FIRST COL SPECIAL
     var htmlrow0 = document.createElement('tr');
     for (var col = 0; col < (finWTPO + 2); col++) {
         var htmlcol = document.createElement('td');
@@ -227,12 +223,19 @@ function createTableUsingSched(a, realTN, finGPW, finWTPO) {
     }
     document.getElementById("leagueSched").appendChild(htmlrow0);
 
-    //ALL OTHER Rows
+    //ALL OTHER COLs
     for (var row = 0; row < finGPW; row++) {
         var htmlrow = document.createElement('tr');
         var htmlcol = document.createElement('td');
+
         htmlcol.innerHTML = "Game " + (row + 1);
         htmlrow.appendChild(htmlcol);
+
+
+
+        var winLoseInput = document.createElement('input');
+        //teamsName.setAttribute('type', 'text');
+
         for (var col = 1; col < (finWTPO + 2); col++) {
 
             var htmlcol = document.createElement('td');
@@ -243,7 +246,7 @@ function createTableUsingSched(a, realTN, finGPW, finWTPO) {
                 var battle = a[col - 1][row];
                 var team1 = battle.substring(0, 1);
                 var team2 = battle.substring(1, 2);
-
+                //
 
                 htmlcol.innerHTML = realTN[team1] + "  vs.\n" + realTN[team2];
 
@@ -373,7 +376,7 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
         var pplwithoutNA = new Array();
         var pplTeamOnly = new Array();
 
-        console.log(listOfNameincurrentEvent);
+
 
         for (var x = 0; x < pplArray.length; x++) {
             if (pplArray[x] != "N/A") {
@@ -393,17 +396,6 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
 
 
-
-        /*
-        for(var x = 0; x < pplwithoutNA.length; x++){
-            var fff = listOfNameincurrentEvent[x];
-            var uidandname = fff.split(";")
-            console.log(uidandname[0]);
-
-        }*/
-
-
-
         for (var x = 0; x < amountofTeam; x++) {
             var displayingARR = new Array();
 
@@ -412,7 +404,7 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
 
             var htmlc0 = document.createElement('td');
             var teamName = thisEventLeage[letters[x]]["name"];
-            htmlc0.innerHTML = teamName;
+            htmlc0.innerHTML = teamName + "("+letters[x].toUpperCase() + ")";
             htmlr.appendChild(htmlc0);
 
             var emptySpotsPerTeam = (10);
@@ -429,17 +421,46 @@ function displayLeaguePPLName(amountofTeam, pplArray, isLeagueOrNot) {
     }
 }
 
-function convertOBJtoARR(UIEobj) {
+function convertOBJtoARR(obj) {
     var finallist = new Array();
-    $.each(UIEobj, function(index, value) {
+    $.each(obj, function(index, value) {
         finallist.push(value);
     });
     return finallist;
 }
 
-function postComment(e) {
+function postMatchResult(e) {
+	e.preventDefault();
+    var comment = document.getElementById('matchText').value;
+    var winloseteamarr = comment.toLowerCase().split(",")
+    var winT = winloseteamarr[0];
+    var loseT = winloseteamarr[1];
+
+
+    var winteam = thisEventLeage[winloseteamarr[0]];
+    var loseteam = thisEventLeage[winloseteamarr[1]];
+
+    var winningTeamNewWins = winteam.win + 1;
+    var losingTeamNewLose = loseteam.lose + 1;
     
 
+    
+    updateMatchRef0 = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent + '/League/' + winloseteamarr[0]);
+
+    updateMatchRef0.update({
+        "win": winningTeamNewWins,
+    });
+    updateMatchRef1 = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent + '/League/' + winloseteamarr[1]);
+
+    updateMatchRef1.update({
+        "lose": losingTeamNewLose,
+    });
+
+    
+
+}
+
+function postComment(e) {
     var comment = document.getElementById('commentText').value;
     var n = new Date();
 
@@ -448,18 +469,16 @@ function postComment(e) {
     var d = n.getDate();
     var h = n.getHours();
     var min = n.getMinutes();
-    if(min<10){
-        min = "0"+min;
+    if (min < 10) {
+        min = "0" + min;
     }
-    var finalCom = CommentsofEvent +"On "+monthNames[m]+"/"+d+" "+h+":"+min+" "+currentName+" said \""+comment+ "\",";
+    var finalCom = CommentsofEvent + "On " + monthNames[m] + "/" + d + " " + h + ":" + min + " " + currentName + " said \"" + comment + "\",";
     updateCommentRef = new Firebase('https://sportnetwork.firebaseio.com/Events/' + currentEvent);
 
     updateCommentRef.update({
         "Comments": finalCom,
     });
     e.preventDefault();
-
-
 
 }
 
@@ -509,14 +528,14 @@ function displayeventDetail() {
         document.getElementById('eventdetail_Class').innerHTML = "This is a " + snapshot.val().EventClass + " event";
         document.getElementById('eventdetail_Time').innerHTML = "Time of Event: " + snapshot.val().Time;
         document.getElementById('eventdetail_TotalSpotsAvaliable').innerHTML = "Spots left: " + snapshot.val().TotalSpotsAvaliable;
-        
+
 
         var firebaseComment = snapshot.val().Comments.split(",");
-        var finalcommentstring ="";
-        for(var x = 0;x<firebaseComment.length;x++){
-            finalcommentstring=finalcommentstring+firebaseComment[x]+"<br>";
+        var finalcommentstring = "";
+        for (var x = 0; x < firebaseComment.length; x++) {
+            finalcommentstring = finalcommentstring + firebaseComment[x] + "<br>";
         }
-        console.log(firebaseComment);
+
 
         document.getElementById('eventComment').innerHTML = finalcommentstring;
 
@@ -546,24 +565,33 @@ function displayeventDetail() {
         }
 
 
-
+        // a league event
         if (thisEventLeage != undefined) {
             console.log("this is a league event");
-            console.log(thisEventLeage);
-            TP = thisEventLeage["fuckbrandon"]["totalPlayer"];
-            TT = thisEventLeage["fuckbrandon"]["totalTeams"];
-            GPW = thisEventLeage["fuckbrandon"]["gamesPerWeek"];
-            WTPO = thisEventLeage["fuckbrandon"]["weeksTillPlayoff"];
-            console.log(TP + " / " + TT + " / " + GPW + " / " + WTPO + " / ");
 
+            TP = thisEventLeage["zzzfuckbrandon"]["totalPlayer"];
+            TT = thisEventLeage["zzzfuckbrandon"]["totalTeams"];
+            GPW = thisEventLeage["zzzfuckbrandon"]["gamesPerWeek"];
+            WTPO = thisEventLeage["zzzfuckbrandon"]["weeksTillPlayoff"];
+            console.log(TP + " / " + TT + " / " + GPW + " / " + WTPO + " / ");
+            console.log("leaue has been touched");
             leaguesched = schedule(TP, TT, GPW, WTPO);
+
+            displayorderedLeagueStandings(thisEventLeage);
+
 
             var RT = getRealNameArrayFromFirebase(thisEventLeage);
             createTableUsingSched(leaguesched, RT, GPW, WTPO);
             leagueTeamNameSubmitDisplay(TT, team);
             leagueSchedDiv.className = "not_empty"
 
+            document.getElementById('commentSubmit').addEventListener("click", postComment);
+
+
+            //order the wins and loses by has most wins by array since firebase is asycnhronus
+
         } else {
+            //not a league event
             console.log("this is NOT a league event");
             $('#leagueTeam').empty();
             $('#pplLeagueTitle').empty();
@@ -575,7 +603,7 @@ function displayeventDetail() {
         displayLeaguePPLName(TT, finalAPPLARR, isLeagueORN);
 
         //comment button func!
-        document.getElementById('commentSubmit').addEventListener("click", postComment);
+        document.getElementById('matchSubmit').addEventListener("click", postMatchResult);
 
         var without = convertLeagueArraytoUIDonly(finalAPPLARR);
 
@@ -611,7 +639,51 @@ function displayeventDetail() {
 
 }
 
+function sortNumber(a, b) {
+    return a.win - b.win;
+}
 
+function displayorderedLeagueStandings(LeagueOBJ) {
+	$('#leagueRanking').empty();
+    var leagueARR = convertOBJtoARR(LeagueOBJ);
+    leagueARR.pop();
+
+
+    console.log(leagueARR);
+    var orderedstandings = new Array();
+    //create for loop that goes backwards and prints out the team with most wins.
+    for (var x = 0; x < leagueARR.length; x++) {
+        var currentTeam = leagueARR[x];
+
+        var temp = currentTeam.win / (currentTeam.win + currentTeam.lose);
+        if (isNaN(temp)) {
+            temp = 0;
+        }
+        currentTeam.winrate = temp;
+        orderedstandings.push(currentTeam);
+    }
+    console.log(orderedstandings);
+
+
+    orderedstandings.sort(function(a, b) {
+        return b.winrate - a.winrate
+    });
+    console.log(orderedstandings);
+    var rankingDiv = document.getElementById("leagueRanking");
+
+    for (var i = 0; i < orderedstandings.length; i++) {
+        var teamnames = document.createElement('p');
+        var temp = "Rank "+ (i+1)+" : "+orderedstandings[i].name + ' ' + (" wins: " + orderedstandings[i].win) + ("  loses: " + orderedstandings[i].lose);
+        teamnames.textContent = temp
+        rankingDiv.appendChild(teamnames);
+
+    }
+
+
+
+
+
+}
 //displays the picture of the users who are in this event.
 function displayUsersInEvent(listOfUid) {
     $('#usersInEvent').empty();
@@ -640,7 +712,7 @@ function displayUsersInEvent(listOfUid) {
                 var uid = snapshot.key();
                 var name = snapshot.val().Full_Name;
                 listOfNameincurrentEvent.push(uid + ";" + name);
-                
+
                 var userDiv = document.createElement('div');
                 userDiv.setAttribute('id', 'userDiv');
 
@@ -652,8 +724,6 @@ function displayUsersInEvent(listOfUid) {
                 userDiv.appendChild(userImage);
                 userDiv.appendChild(userName);
                 userListDiv.appendChild(userDiv);
-
-
 
                 if (currentEventOBJ.League != undefined) {
                     var team = -1;
@@ -667,7 +737,7 @@ function displayUsersInEvent(listOfUid) {
                     if (team != undefined) {
                         letters.indexOf(team)
                         row = leagueTeamPPL.rows[letters.indexOf(team)].cells;
-                        
+
                         for (var c = 1; c < row.length; c++) {
                             if (row[c].innerHTML == "") {
                                 row[c].innerHTML = name;
@@ -687,7 +757,6 @@ function displayUsersInEvent(listOfUid) {
     //console.log(listOfNameincurrentEvent)
 }
 
-
 function product_Range(a, b) {
     var prd = a,
         i = a;
@@ -697,7 +766,6 @@ function product_Range(a, b) {
     }
     return prd;
 }
-
 
 function combinations(n, r) {
     if (n == r) {
@@ -723,7 +791,6 @@ function combinationArray(str) {
     return fn("", str, []);
 }
 
-
 function shuffle(array) {
     var currentIndex = array.length,
         temporaryValue, randomIndex;
@@ -748,8 +815,6 @@ function schedule(totalPlayer, numTeams, gamesWeek, totalWeeks) {
     //output: 
     var gameCycle = combinations(numTeams, 2);
     var weekCycle = gameCycle / gamesWeek;
-
-
     //var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
     var teamsString = "";
     for (var i = 0; i < numTeams; i++) {
