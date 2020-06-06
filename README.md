@@ -1,4 +1,4 @@
-# Drenalin
+# [Drenalin](https://sportnetwork.firebaseapp.com/)
 Sport event hosting platform hosted on firebase https://sportnetwork.firebaseapp.com/
 
 ## Authors
